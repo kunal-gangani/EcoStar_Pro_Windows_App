@@ -51,8 +51,8 @@ This project is licensed under the MIT License.
 
 ## Contact
 For questions or support, please contact:
-- Email: your.email@example.com
-- GitHub: https://github.com/yourusername/EcoStarPro
+- Email: thekunalgangani@gmail.com
+- GitHub: https://github.com/kunal-gangani
 
 ---
 
