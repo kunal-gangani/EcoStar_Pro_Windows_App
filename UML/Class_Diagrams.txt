@@ -1,0 +1,153 @@
+Class: User
+-----------------------------------
+Attributes:
+- user_id: int (Primary Key)
+- username: str (Unique)
+- password: str
+- name: str
+- email: str
+- created_at: datetime
+
+Methods:
++ register(): bool
++ login(username, password): User
++ update_profile(name, email): bool
++ change_password(old_pass, new_pass): bool
++ logout(): void
+
+
+Class: ConsumptionData
+-----------------------------------
+Attributes:
+- consumption_id: int (Primary Key)
+- user_id: int (Foreign Key -> User)
+- energy_type: str (Electricity/Gas/Water)
+- units: float
+- time_frame: str (Hourly/Daily/Weekly/Monthly)
+- timestamp: datetime
+
+Methods:
++ add_consumption(user_id, type, units, time_frame): bool
++ get_user_consumption(user_id, time_frame): List[ConsumptionData]
++ calculate_total(user_id, type, time_frame): float
++ delete_consumption(consumption_id): bool
+
+
+Class: Analysis
+-----------------------------------
+Attributes:
+- analysis_id: int (Primary Key)
+- user_id: int (Foreign Key -> User)
+- time_frame: str
+- total_electricity: float
+- total_gas: float
+- total_water: float
+- generated_at: datetime
+
+Methods:
++ generate_report(user_id, time_frame): Analysis
++ compare_periods(user_id, period1, period2): dict
++ get_trends(user_id): dict
++ visualize_data(): void
+
+
+Class: Recommendation
+-----------------------------------
+Attributes:
+- recommendation_id: int (Primary Key)
+- user_id: int (Foreign Key -> User)
+- message: str
+- category: str (Energy/Water/Gas)
+- priority: str (High/Medium/Low)
+- created_at: datetime
+
+Methods:
++ generate_tips(user_id, consumption_data): List[Recommendation]
++ get_user_tips(user_id): List[Recommendation]
++ mark_as_read(recommendation_id): bool
+
+
+Class: Settings
+-----------------------------------
+Attributes:
+- setting_id: int (Primary Key)
+- user_id: int (Foreign Key -> User)
+- notification_enabled: bool
+- theme: str (Light/Dark)
+- language: str
+- default_time_frame: str
+
+Methods:
++ update_settings(user_id, settings): bool
++ get_settings(user_id): Settings
++ reset_to_default(user_id): bool
+
+
+Class: Authentication
+-----------------------------------
+Attributes:
+- session_id: int
+- user_id: int (Foreign Key -> User)
+- login_time: datetime
+- is_active: bool
+
+Methods:
++ authenticate(username, password): bool
++ create_session(user_id): Authentication
++ validate_session(session_id): bool
++ end_session(session_id): void
+
+
+Class: Authentication
+-----------------------------------
+Attributes:
+- session_id: int
+- user_id: int (Foreign Key -> User)
+- login_time: datetime
+- is_active: bool
+
+Methods:
++ authenticate(username, password): bool
++ create_session(user_id): Authentication
++ validate_session(session_id): bool
++ end_session(session_id): void
+
+
+Class: UIController
+-----------------------------------
+Attributes:
+- current_user: User
+- current_page: str
+- drawer_state: bool
+
+Methods:
++ show_splash_screen(): void
++ show_login_page(): void
++ show_register_page(): void
++ show_home_page(user_id): void
++ show_profile_page(): void
++ show_settings_page(): void
++ show_analysis_page(time_frame): void
++ navigate_to(page): void
++ toggle_drawer(): void
+
+
+Relationships:
+User ← ConsumptionData (One-to-Many)
+One user can have multiple consumption records
+
+User ← Analysis (One-to-Many)
+One user can have multiple analysis reports
+
+User ← Recommendation (One-to-Many)
+One user can receive multiple recommendations
+
+User ← Settings (One-to-One)
+Each user has one settings configuration
+
+User ← Authentication (One-to-Many)
+One user can have multiple login sessions
+
+Database is used by all classes for data persistence (Dependency relationship)
+
+UIController uses all other classes to manage application flow (Association)

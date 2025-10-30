@@ -1,0 +1,25 @@
+===============================================================================================================
+ZERO LEVEL
+
+User → EcoStar Pro System (arrows labeled Registration, Login, Consumption Data)
+EcoStar Pro System → User (arrows labeled Reports, Recommendations)
+
+Administrator → EcoStar Pro System (arrows labeled User Management Requests) // edit, view, delete users
+EcoStar Pro System → Administrator: (arrows labeled User Data List, Status Reports)
+
+Database/System → EcoStar Pro System: (arrows labeled Retrieve Data)
+===============================================================================================================
+
+
+FIRST LEVEL
+	Processes:
+		1) User Authentication
+		2) Consumption Data Management
+		3) Profile Management
+		4) Analysis & Reports
+		5) Recommendations
+		6) User/Admin Management
+		7) Settings/Notification 
+
+
+
